@@ -15,10 +15,12 @@ git clone https://github.com/LondheShubham153/django-notes-app.git && cd django-
 sudo docker build -t notes-app .
 #creating the containg
 docker run -d -p 8000:8000 notes-app:latest
-#coping the proxy file to nginx configd
-sudo cp /tmp/proxy /etc/nginx/sites-available/
-cd /etc/nginx/sites-available/
-#craeting a softlink 
-sudo ln -s /etc/nginx/sites-available/proxy /etc/nginx/sites-enabled/
+#coping the proxy file to nginx site-enabled directory
+cd /etc/nginx/sites-enabled
+sudo rm -rf *
+cd /tmp
+sudo cp /tmp/proxy-setup /etc/nginx/sites-enabled/
+cd /home/ubuntu/django-notes-app/mynotes/build/
+sudo cp -r static/ /var/www/html/
 #restarting nginx
-sudo systemctl restart nginx 
+sudo systemctl restart nginx

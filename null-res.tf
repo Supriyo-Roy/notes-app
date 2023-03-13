@@ -3,7 +3,7 @@ resource "null_resource" "cluster" {
     depends_on = [
         aws_instance.web]
 triggers = {
-    id = "time())"
+    id = "time()"
   }
       // file provisioner will take the file from local and deploy to the remote server  
     provisioner "file" {
@@ -18,8 +18,8 @@ triggers = {
     }
     }
     provisioner "file" {
-      source = "proxy"
-      destination = "/tmp/proxy" 
+      source = "proxy-setup"
+      destination = "/tmp/proxy-setup" 
       connection {
       agent       = "false"
       type        = "ssh"
